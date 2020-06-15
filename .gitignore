@@ -1,0 +1,10 @@
+*.pyc
+*.log
+**/migrations/*.py
+!**/migrations/__init__.py
+**/static
+**/media
+**/postgres_data
+!**/frontend/static
+**/certs
+

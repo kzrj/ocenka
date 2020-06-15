@@ -1,0 +1,10 @@
+Django
+gunicorn
+psycopg2-binary
+djangorestframework
+django-rest-swagger
+django-filter
+django-cors-headers
+djangorestframework-jwt
+PyJWT
+viberbot
