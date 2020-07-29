@@ -51,8 +51,19 @@ class Job(CoreModel):
 
     @property
     def created_ago(self):
-    	return (timezone.now() - self.created_at)
-    
+    	delta = timezone.now() - self.created_at
+	    d = {'d': delta.days}
+	    d['h'], rem = divmod(delta.seconds, 3600)
+	    d['m'], d['s'] = divmod(rem, 60)
+
+	    if d['d'] > 0:
+	    	return f'{d['d']}д назад'
+
+	    if d['d'] < 1 and d['h'] > 0:
+	    	return f'{d['h']}ч назад'
+
+	    if d['d'] < 1 and d['h'] < 1:
+	    	return 'меньше часа назад'    
 
 
 class JobImageQuerySet(models.QuerySet):
