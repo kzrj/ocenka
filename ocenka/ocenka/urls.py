@@ -12,7 +12,7 @@ from rest_framework import routers
 from jobs.views import JobViewSet, InitTestDataView
 
 router = routers.DefaultRouter()
-router.register(r'products', JobViewSet, basename='jobs')
+router.register(r'jobs', JobViewSet, basename='jobs')
 # router.register(r'categories', CategoryViewSet, basename='categories')
 # router.register(r'shops', ShopViewSet, basename='shops')
 
