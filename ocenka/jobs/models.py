@@ -57,10 +57,10 @@ class Job(CoreModel):
         d['m'], d['s'] = divmod(rem, 60)
 
         if d['d'] > 0:
-            return f'{d['d']}д назад'
+            return f"{d['d']}д назад"
 
         if d['d'] < 1 and d['h'] > 0:
-            return f'{d['h']}ч назад'
+            return f"{d['h']}ч назад"
 
         if d['d'] < 1 and d['h'] < 1:
             return 'меньше часа назад'    
