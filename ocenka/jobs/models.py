@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.db.models import Q
+from django.utils import timezone
 from django.core.exceptions import ValidationError as DjangoValidationError
+
 
 from jobs.utils import create_resized_image_from_file
 
@@ -46,6 +48,11 @@ class Job(CoreModel):
 
     def __str__(self):
         return self.title
+
+    @property
+    def created_ago(self):
+    	return timezone.now() - self.created_at 
+    
 
 
 class JobImageQuerySet(models.QuerySet):
