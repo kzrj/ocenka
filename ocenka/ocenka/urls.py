@@ -9,6 +9,8 @@ from django.conf import settings
 
 from rest_framework import routers
 
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
+
 from jobs.views import JobViewSet, InitTestDataView
 
 router = routers.DefaultRouter()
@@ -19,7 +21,10 @@ router.register(r'jobs', JobViewSet, basename='jobs')
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
-    url(r'^api/init_data/$', InitTestDataView.as_view()) ,    
+    url(r'^api/init_data/$', InitTestDataView.as_view()),
+    url(r'^api/jwt/api-token-auth/', obtain_jwt_token),
+    url(r'^api/jwt/api-token-refresh/', refresh_jwt_token),
+    url(r'^api/jwt/api-token-verify/', verify_jwt_token),
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
 + static('/media/', document_root=os.path.join(settings.BASE_DIR, '../media'))
