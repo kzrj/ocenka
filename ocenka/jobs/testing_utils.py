@@ -34,6 +34,7 @@ def create_test_zakazchiki():
 def create_test_jobs(images=False):
     create_test_categories()
     create_test_zakazchiki()
+    User.objects.create_superuser(username='kaizerj',email='kzrster@gmail.com', password='jikozfree')
     
     titles = ['Ремонтные работы', 'Требуются сварщики', "Требуются каменщики", "Кровельные работы",
      "Ремонт квартиры", " Установить кондиционер", "Построить свинокомплекс", "Поклеить обои",
