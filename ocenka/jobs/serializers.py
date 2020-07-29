@@ -7,7 +7,7 @@ from jobs.models import Job
 class JobSerializer(serializers.ModelSerializer):
     category = serializers.StringRelatedField()
     zakazchik = serializers.ReadOnlyField(source='zakazchik.profile.nickname')
-    created_ago = serializers.ReadOnlyField()
+    created_ago = serializers.DurationField()
 
     class Meta:
         model = Job

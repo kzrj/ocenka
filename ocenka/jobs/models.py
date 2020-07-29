@@ -51,7 +51,7 @@ class Job(CoreModel):
 
     @property
     def created_ago(self):
-    	return timezone.now() - self.created_at 
+    	return (timezone.now() - self.created_at)
     
 
 
