@@ -26,8 +26,8 @@ class Category(CoreModel):
 class JobManager(CoreModelManager):
     def create_job(self, title, category, budget, address, zakazchik, description=None, start_date=None,
      end_date=None):
-    	return self.create(title=title, category=category, budget=budget, address=address,
-    	 zakazchik=zakazchik, description=description, start_date=start_date, end_date=end_date)
+        return self.create(title=title, category=category, budget=budget, address=address,
+         zakazchik=zakazchik, description=description, start_date=start_date, end_date=end_date)
 
 
 class Job(CoreModel):
@@ -51,19 +51,19 @@ class Job(CoreModel):
 
     @property
     def created_ago(self):
-    	delta = timezone.now() - self.created_at
-	    d = {'d': delta.days}
-	    d['h'], rem = divmod(delta.seconds, 3600)
-	    d['m'], d['s'] = divmod(rem, 60)
+        delta = timezone.now() - self.created_at
+        d = {'d': delta.days}
+        d['h'], rem = divmod(delta.seconds, 3600)
+        d['m'], d['s'] = divmod(rem, 60)
 
-	    if d['d'] > 0:
-	    	return f'{d['d']}д назад'
+        if d['d'] > 0:
+            return f'{d['d']}д назад'
 
-	    if d['d'] < 1 and d['h'] > 0:
-	    	return f'{d['h']}ч назад'
+        if d['d'] < 1 and d['h'] > 0:
+            return f'{d['h']}ч назад'
 
-	    if d['d'] < 1 and d['h'] < 1:
-	    	return 'меньше часа назад'    
+        if d['d'] < 1 and d['h'] < 1:
+            return 'меньше часа назад'    
 
 
 class JobImageQuerySet(models.QuerySet):
@@ -100,5 +100,5 @@ class JobImage(CoreModel):
 
 
 class Subscription(CoreModel):
-	pass
+    pass
 
