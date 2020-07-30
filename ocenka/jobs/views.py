@@ -45,6 +45,8 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class JobViewSet(viewsets.ModelViewSet):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
+    filter_class = JobFilter
+
 
     @action(methods=['post'], detail=False)
     def first_create(self, request):
