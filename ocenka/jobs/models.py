@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError as DjangoValidationError
 from jobs.utils import create_resized_image_from_file
 
 from core.models import CoreModel, CoreModelManager
-from clients.models import Zakazchik, Ispolnitel, Profile
+from clients.models import Profile
 
 
 class Category(CoreModel):
