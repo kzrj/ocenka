@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError as DjangoValidationError
 from jobs.utils import create_resized_image_from_file
 
 from core.models import CoreModel, CoreModelManager
-from clients.models import Zakazchik, Ispolnitel
+from clients.models import Zakazchik, Ispolnitel, Profile
 
 
 class Category(CoreModel):
@@ -24,8 +24,8 @@ class Category(CoreModel):
 
 
 class JobManager(CoreModelManager):
-    def create_job(self, title, category, budget, address, zakazchik, description=None, start_date=None,
-     end_date=None):
+    def create_job(self, title, category, budget, address, zakazchik, description=None,
+     start_date=None, end_date=None):
         return self.create(title=title, category=category, budget=budget, address=address,
          zakazchik=zakazchik, description=description, start_date=start_date, end_date=end_date)
 
@@ -39,8 +39,10 @@ class Job(CoreModel):
     start_date = models.DateField(null=True)
     end_date = models.DateField(null=True)
 
-    zakazchik = models.ForeignKey(Zakazchik, on_delete=models.CASCADE, related_name='jobs')
-    ispolnitel = models.ForeignKey(Ispolnitel, on_delete=models.SET_NULL, null=True, related_name='jobs')
+    zakazchik = models.ForeignKey(Profile, on_delete=models.CASCADE,
+     related_name='jobs_as_zakazchik')
+    ispolnitel = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True,
+     related_name='jobs_as_ispolnitel')
 
     active = models.BooleanField(default=True) 
 
@@ -63,7 +65,7 @@ class Job(CoreModel):
             return f"{d['h']}ч назад"
 
         if d['d'] < 1 and d['h'] < 1:
-            return 'меньше часа назад'    
+            return 'меньше часа назад' 
 
 
 class JobImageQuerySet(models.QuerySet):

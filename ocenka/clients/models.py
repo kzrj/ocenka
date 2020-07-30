@@ -53,31 +53,15 @@ class Profile(CoreModel):
 
     active = models.BooleanField(default=True)  
 
+    zakazchik = models.BooleanField(default=False)
+    ispolnitel = models.BooleanField(default=False)
+
     objects = ProfileManager()
 
     def __str__(self):
         return self.nickname
 
-    @property
-    def is_zakazchik(self):
-        if hasattr(self, 'zakazchik'):
-            return True
+    def mark_as_zakazchik(self):
+        self.zakazchik = True
+        self.save()
 
-    @property
-    def is_ispolnitel(self):
-        if hasattr(self, 'ispolnitel'):
-            return True
-
-
-class Zakazchik(CoreModel):
-    profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'Заказчик {self.profile}'
-
-
-class Ispolnitel(CoreModel):
-    profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'Исполнитель {self.name}'
