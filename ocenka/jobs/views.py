@@ -42,24 +42,24 @@ class JobViewSet(viewsets.ModelViewSet):
     serializer_class = JobSerializer
 
     @action(methods=['post'], detail=False)
-   	def first_create(self, request):
-   		serializer = JobFirstCreateSerializer(data=request.data)
+    def first_create(self, request):
+        serializer = JobFirstCreateSerializer(data=request.data)
         if serializer.is_valid():
-        	# get or create profile
-        	profile = request.user.profile
-        	profile.nickname = serializer.validated_data['name']
-        	profile.phone = serializer.validated_data['phone']
-        	profile.mark_as_zakazchik()
+            # get or create profile
+            profile = request.user.profile
+            profile.nickname = serializer.validated_data['name']
+            profile.phone = serializer.validated_data['phone']
+            profile.mark_as_zakazchik()
 
             job = Job.objects.create_job(
-            	title=serializer.validated_data['title'],
-            	category=serializer.validated_data['category'],
-            	budget=serializer.validated_data['budget'],
-            	address=serializer.validated_data['address'],
-            	zakazchik=profile,
-            	description=serializer.validated_data['description'],
-            	start_date=serializer.validated_data['start_date'],
-            	end_date=serializer.validated_data['end_date'])
+                title=serializer.validated_data['title'],
+                category=serializer.validated_data['category'],
+                budget=serializer.validated_data['budget'],
+                address=serializer.validated_data['address'],
+                zakazchik=profile,
+                description=serializer.validated_data['description'],
+                start_date=serializer.validated_data['start_date'],
+                end_date=serializer.validated_data['end_date'])
             return Response(
                 {
                     "message": "Created"
