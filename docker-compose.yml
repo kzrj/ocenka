@@ -11,7 +11,7 @@ services:
       # - "443:443"
     volumes:
       - .:/code
-      - ./nginx:/etc/nginx/conf.d
+      # - ./nginx:/etc/nginx/conf.d
       - ./frontend:/var/www/frontend
     depends_on:
       - backend
