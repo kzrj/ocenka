@@ -11,7 +11,7 @@ from rest_framework import routers
 
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
-from jobs.views import JobViewSet, InitTestDataView
+from jobs.views import JobViewSet, InitTestDataView, viber_view
 
 router = routers.DefaultRouter()
 router.register(r'jobs', JobViewSet, basename='jobs')
@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^api/jwt/api-token-auth/', obtain_jwt_token),
     url(r'^api/jwt/api-token-refresh/', refresh_jwt_token),
     url(r'^api/jwt/api-token-verify/', verify_jwt_token),
+    path('viber/', viber_view, name='viber'),
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
 + static('/media/', document_root=os.path.join(settings.BASE_DIR, '../media'))
