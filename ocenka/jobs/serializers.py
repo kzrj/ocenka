@@ -15,10 +15,10 @@ class JobSerializer(serializers.ModelSerializer):
 
 
 class JobFirstCreateSerializer(serializers.ModelSerializer):
-	name = serializers.CharField()
-	phone = serializers.IntegerField()
+    name = serializers.CharField()
+    phone = serializers.IntegerField()
 
     class Meta:
         model = Job
         fields = ['title', 'category', 'budget', 'address', 'description', 'start_date',
-        	'end_date', 'name', 'phone']
+            'end_date', 'name', 'phone']
