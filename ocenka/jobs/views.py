@@ -31,7 +31,7 @@ from viberbot.api.viber_requests import (
     )
 
 from jobs.models import Job
-from jobs.serializers import JobSerializer
+from jobs.serializers import JobSerializer, JobFirstCreateSerializer
 from jobs.testing_utils import create_test_jobs
 from clients.models import Profile
 from core.utils import create_token
