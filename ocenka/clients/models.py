@@ -58,6 +58,16 @@ class Profile(CoreModel):
     def __str__(self):
         return self.nickname
 
+    @property
+    def is_zakazchik(self):
+        if hasattr(self, 'zakazchik'):
+            return True
+
+    @property
+    def is_ispolnitel(self):
+        if hasattr(self, 'ispolnitel'):
+            return True
+
 
 class Zakazchik(CoreModel):
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
