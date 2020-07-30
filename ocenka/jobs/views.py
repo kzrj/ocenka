@@ -30,11 +30,16 @@ from viberbot.api.viber_requests import (
     ViberSeenRequest
     )
 
-from jobs.models import Job
-from jobs.serializers import JobSerializer, JobFirstCreateSerializer
+from jobs.models import Job, Category
+from jobs.serializers import JobSerializer, JobFirstCreateSerializer, CategorySerializer
 from jobs.testing_utils import create_test_jobs
 from clients.models import Profile
 from core.utils import create_token
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
 
 class JobViewSet(viewsets.ModelViewSet):

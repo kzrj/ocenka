@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from rest_framework import serializers
 
-from jobs.models import Job
+from jobs.models import Job, Category
 
 
 class JobSerializer(serializers.ModelSerializer):
@@ -22,3 +22,9 @@ class JobFirstCreateSerializer(serializers.ModelSerializer):
         model = Job
         fields = ['title', 'category', 'budget', 'address', 'description', 'start_date',
             'end_date', 'name', 'phone']
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        exclude = ['created_at', 'modified_at']

@@ -11,11 +11,11 @@ from rest_framework import routers
 
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
-from jobs.views import JobViewSet, InitTestDataView, viber_view
+from jobs.views import JobViewSet, InitTestDataView, viber_view, CategoryViewSet
 
 router = routers.DefaultRouter()
 router.register(r'jobs', JobViewSet, basename='jobs')
-# router.register(r'categories', CategoryViewSet, basename='categories')
+router.register(r'categories', CategoryViewSet, basename='categories')
 # router.register(r'shops', ShopViewSet, basename='shops')
 
 urlpatterns = [
