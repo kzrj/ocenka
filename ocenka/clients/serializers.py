@@ -5,8 +5,8 @@ from clients.models import Profile
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-	zakazchik = serializers.ReadOnlyField()
-	ispolnitel = serializers.ReadOnlyField()
+    zakazchik = serializers.ReadOnlyField()
+    ispolnitel = serializers.ReadOnlyField()
 
     class Meta:
         model = Profile
