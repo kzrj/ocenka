@@ -4,7 +4,7 @@ import random
 from django.contrib.auth.models import User
 
 from jobs.models import Category, Job
-from clients.models import Profile, Zakazchik
+from clients.models import Profile
 
 
 def create_test_categories():
@@ -28,7 +28,7 @@ def create_test_zakazchiki():
     for name in names:
         profile = Profile.objects.get_or_create_profile_viber(viber_id=str(random.randint(10, 500)),
             viber_name=name)
-        zakazchik = Zakazchik.objects.create(profile=profile)
+        profile.mark_as_zakazchik()
 
 
 def create_test_jobs(images=False):
@@ -44,7 +44,7 @@ def create_test_jobs(images=False):
 
     categories = Category.objects.all().values_list('id', flat=True)
 
-    for zakazchik in Zakazchik.objects.all():
+    for zakazchik in Profile.objects.filter(zakazchik=True):
         for i in range(0, random.randint(1, 7)):
             cat = Category.objects.get(pk=random.choice(categories))
             title = random.choice(titles)
