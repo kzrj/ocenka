@@ -7,6 +7,7 @@ from rest_framework.exceptions import ValidationError as DRFValidationError
 
 from rest_framework import status, exceptions
 from rest_framework.views import exception_handler as drf_exception_handler
+from rest_framework_jwt.settings import api_settings
 
 from django.utils.encoding import force_text
 from django.core.mail import send_mail
