@@ -9,8 +9,8 @@ class JobSerializer(serializers.ModelSerializer):
     zakazchik = serializers.ReadOnlyField(source='zakazchik.nickname')
     created_ago = serializers.ReadOnlyField()
 
-    start_date = serializers.DateTimeField(format="%Y-%m-%d", allow_null=False)
-    end_date = serializers.DateTimeField(format="%Y-%m-%d", allow_null=False)
+    start_date = serializers.DateTimeField(format="%Y-%m-%d", allow_null=True)
+    end_date = serializers.DateTimeField(format="%Y-%m-%d", allow_null=True)
 
     class Meta:
         model = Job
