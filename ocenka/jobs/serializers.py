@@ -17,13 +17,17 @@ class JobSerializer(serializers.ModelSerializer):
 class JobFirstCreateSerializer(serializers.ModelSerializer):
     name = serializers.CharField()
     phone = serializers.IntegerField()
-    start_date = serializers.DateField(format="%Y-%m-%d", allow_null=True, default=None)
-    end_date = serializers.DateField(format="%Y-%m-%d", allow_null=True, default=None)
+    # start_date = serializers.DateField(format="%Y-%m-%d", allow_null=True, default=None)
+    # end_date = serializers.DateField(format="%Y-%m-%d", allow_null=True, default=None)
 
     class Meta:
         model = Job
-        fields = ['title', 'category', 'budget', 'address', 'description', 'start_date',
-            'end_date', 'name', 'phone']
+        fields = ['title',
+         	'category', 'budget', 'address', 'description',
+         	# 'start_date',
+          #   'end_date', 
+            'name',
+            'phone']
 
 
 class CategorySerializer(serializers.ModelSerializer):
