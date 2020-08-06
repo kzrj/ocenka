@@ -45,7 +45,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 class JobViewSet(viewsets.ModelViewSet):
     queryset = Job.objects.all()
-    serializer_class = JobSerializer
+    serializer_class = JobFirstCreateSerializer
     filter_class = JobFilter
 
     # def get_serializer_class(self):
@@ -55,10 +55,10 @@ class JobViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         print('get_serializer_class')
         print(self.action)
-        if self.action == 'first_create':
-            print('get_serializer_class first create')
-            return JobFirstCreateSerializer
-        return JobSerializer
+        if self.action == 'list':
+            print('get_serializer_class list')
+            return JobSerializer
+        return JobFirstCreateSerializer
 
     @action(methods=['post'], detail=False)
     def first_create(self, request):
