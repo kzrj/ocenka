@@ -48,6 +48,10 @@ class JobViewSet(viewsets.ModelViewSet):
     serializer_class = JobSerializer
     filter_class = JobFilter
 
+    def get_serializer_class(self):
+        if self.action == 'first_create':
+            return JobFirstCreateSerializer
+        return JobSerializer
 
     @action(methods=['post'], detail=False)
     def first_create(self, request):
