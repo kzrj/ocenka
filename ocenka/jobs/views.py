@@ -49,6 +49,10 @@ class JobViewSet(viewsets.ModelViewSet):
     filter_class = JobFilter
 
     def get_serializer_class(self):
+        print('get_serializer')
+        return super(JobViewSet, self).get_serializer_class()
+
+    def get_serializer_class(self):
         print('get_serializer_class')
         print(self.action)
         if self.action == 'first_create':
