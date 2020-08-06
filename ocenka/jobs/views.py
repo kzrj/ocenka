@@ -63,6 +63,7 @@ class JobViewSet(viewsets.ModelViewSet):
     @action(methods=['post'], detail=False, name='first_create', serializer_class=JobFirstCreateSerializer)
     def first_create(self, request):
         serializer = JobFirstCreateSerializer(data=request.data)
+        print('request post', request.POST)
         if serializer.is_valid():
             # get or create profile
             profile = request.user.profile
