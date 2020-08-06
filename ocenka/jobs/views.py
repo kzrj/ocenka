@@ -48,9 +48,9 @@ class JobViewSet(viewsets.ModelViewSet):
     serializer_class = JobSerializer
     filter_class = JobFilter
 
-    def get_serializer_class(self):
-        print('get_serializer')
-        return super(JobViewSet, self).get_serializer_class()
+    # def get_serializer_class(self):
+    #     print('get_serializer')
+    #     return super(JobViewSet, self).get_serializer_class()
 
     def get_serializer_class(self):
         print('get_serializer_class')
