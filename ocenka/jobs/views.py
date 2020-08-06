@@ -78,7 +78,8 @@ class JobViewSet(viewsets.ModelViewSet):
                 zakazchik=profile,
                 description=serializer.validated_data['description'],
                 start_date=serializer.validated_data['start_date'],
-                end_date=serializer.validated_data['end_date'])
+                end_date=serializer.validated_data['end_date']
+                )
             return Response(
                 {
                     "message": "Created"
