@@ -60,7 +60,7 @@ class JobViewSet(viewsets.ModelViewSet):
             return JobFirstCreateSerializer
         return JobSerializer
 
-    @action(methods=['post'], detail=False)
+    @action(methods=['post'], detail=False, name='first_create')
     def first_create(self, request):
         serializer = JobFirstCreateSerializer(data=request.data)
         if serializer.is_valid():
