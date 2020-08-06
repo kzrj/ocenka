@@ -50,6 +50,7 @@ class JobViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == 'first_create':
+            print('get_serializer_class first create')
             return JobFirstCreateSerializer
         return JobSerializer
 
