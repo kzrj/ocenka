@@ -36,8 +36,8 @@ class Job(CoreModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='jobs')
     budget = models.IntegerField()
     address = models.CharField(max_length=200, null=True, blank=True)
-    start_date = models.DateField(null=True)
-    end_date = models.DateField(null=True)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
 
     zakazchik = models.ForeignKey(Profile, on_delete=models.CASCADE,
      related_name='jobs_as_zakazchik')
