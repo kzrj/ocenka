@@ -52,13 +52,13 @@ class JobViewSet(viewsets.ModelViewSet):
     #     print('get_serializer')
     #     return super(JobViewSet, self).get_serializer_class()
 
-    def get_serializer_class(self):
-        print('get_serializer_class')
-        print(self.action)
-        if self.action == 'first_create':
-            print('get_serializer_class first_create')
-            return JobFirstCreateSerializer
-        return JobSerializer
+    # def get_serializer_class(self):
+    #     print('get_serializer_class')
+    #     print(self.action)
+    #     if self.action == 'first_create':
+    #         print('get_serializer_class first_create')
+    #         return JobFirstCreateSerializer
+    #     return JobSerializer
 
     @action(methods=['post'], detail=False, name='first_create', serializer_class=JobFirstCreateSerializer)
     def first_create(self, request):
