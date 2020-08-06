@@ -17,8 +17,8 @@ class JobSerializer(serializers.ModelSerializer):
 class JobFirstCreateSerializer(serializers.ModelSerializer):
     name = serializers.CharField()
     phone = serializers.IntegerField()
-    start_date = serializers.DateTimeField(format="%Y-%m-%d", required=False)
-    end_date = serializers.DateTimeField(format="%Y-%m-%d", required=False)
+    start_date = serializers.DateTimeField(format="%Y-%m-%d", allow_null=False)
+    end_date = serializers.DateTimeField(format="%Y-%m-%d", allow_null=False)
 
     class Meta:
         model = Job
