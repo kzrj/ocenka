@@ -54,6 +54,21 @@ class JobViewSet(viewsets.ModelViewSet):
             return JobUpdateSerializer
         return self.serializer_class
 
+    def list(self, request):
+        queryset = self.filter_queryset(
+            self.get_queryset()
+        )
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = JobSerializer(page, many=True)
+            category_serializer = CategorySerializer(Category.objects.all(), many=True)
+            return self.get_paginated_response({'jobs': serializer.data,
+                'categories': category_serializer.data})
+
+        serializer = piglets_serializers.JobSerializer(queryset, many=True)
+        return Response(serializer.data)
+
     def create(self, request):
         pass     
 
