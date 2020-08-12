@@ -31,7 +31,8 @@ from viberbot.api.viber_requests import (
     )
 
 from jobs.models import Job, Category
-from jobs.serializers import JobSerializer, JobFirstCreateSerializer, CategorySerializer, JobUpdateSerializer
+from jobs.serializers import JobSerializer, JobFirstCreateSerializer, CategorySerializer, \
+     JobUpdateSerializer, JobDeactivateSerializer
 from jobs.testing_utils import create_test_jobs
 from jobs.filters import JobFilter
 from clients.models import Profile
@@ -87,15 +88,20 @@ class JobViewSet(viewsets.ModelViewSet):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    @action(methods=['post'], detail=True)
+    @action(methods=['post'], detail=True, serializer_class=JobDeactivateSerializer)
     def deactivate(self, request, pk=None):
-        job = self.get_object()
-        job.deactivate()    
-        return Response(
-            {
-                "message": f"Работа неактивна"
-            },
-            status=status.HTTP_200_OK)
+        serializer = JobDeactivateSerializer(data=request.data)
+        if serializer.is_valid():
+            job = self.get_object()
+            job.active = serializer.validated_data['active']
+            job.save()
+            return Response(
+                {
+                    "message": "Работа активна" if serializer.validated_data['active'] else "Работа неактивна"
+                },
+                status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
 
 class InitTestDataView(APIView):
