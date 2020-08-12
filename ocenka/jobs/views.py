@@ -89,7 +89,7 @@ class JobViewSet(viewsets.ModelViewSet):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @action(methods=['post'], detail=True, serializer_class=JobDeactivateSerializer)
-    def deactivate(self, request, pk=None):
+    def activate_deactivate(self, request, pk=None):
         serializer = JobDeactivateSerializer(data=request.data)
         if serializer.is_valid():
             job = self.get_object()
