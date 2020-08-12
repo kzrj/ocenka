@@ -11,5 +11,5 @@ class JobPagination(PageNumberPagination):
             },
             'count': self.page.paginator.count,
             'results': data['jobs'],
-            'categories'data['categories']: 
+            'categories': data['categories']: 
         })
