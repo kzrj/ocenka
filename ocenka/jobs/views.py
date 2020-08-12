@@ -31,7 +31,7 @@ from viberbot.api.viber_requests import (
     )
 
 from jobs.models import Job, Category
-from jobs.serializers import JobSerializer, JobFirstCreateSerializer, CategorySerializer
+from jobs.serializers import JobSerializer, JobFirstCreateSerializer, CategorySerializer, JobUpdateSerializer
 from jobs.testing_utils import create_test_jobs
 from jobs.filters import JobFilter
 from clients.models import Profile
@@ -47,6 +47,17 @@ class JobViewSet(viewsets.ModelViewSet):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
     filter_class = JobFilter
+
+    def get_serializer_class(self):
+        if self.action == 'partial_update':
+            return JobUpdateSerializer
+        return self.serializer_class
+
+    def create(self, request):
+        pass     
+
+    def destroy(self, request, pk=None):
+        pass
 
     @action(methods=['post'], detail=False, serializer_class=JobFirstCreateSerializer)
     def first_create(self, request):

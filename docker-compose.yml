@@ -31,7 +31,7 @@ services:
     # command: bash -c "cd ocenka &&
     #                   python manage.py migrate &&
     #                   python manage.py makemigrations --no-input &&
-    #                   python manage.py test jobs.tests.test_models"
+    #                   python manage.py test jobs.tests.test_views"
 
     restart: unless-stopped
     command: bash -c "cd ocenka && 

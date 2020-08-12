@@ -23,12 +23,33 @@ class JobFirstCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Job
-        fields = ['title',
-            'category', 'budget', 'address', 'description',
+        fields = [
+            'title',
+            'category', 
+            'budget', 
+            'address', 
+            'description',
             'start_date',
             'end_date', 
             'name',
             'phone',
+            ]
+
+class JobUpdateSerializer(serializers.ModelSerializer):
+    # ! allow_null doesnt work without default
+    start_date = serializers.DateField(format="%Y-%m-%d", allow_null=True, default=None)
+    end_date = serializers.DateField(format="%Y-%m-%d", allow_null=True, default=None)
+
+    class Meta:
+        model = Job
+        fields = [
+            'title',
+            'category', 
+            'budget', 
+            'address', 
+            'description',
+            'start_date',
+            'end_date', 
             ]
 
 
