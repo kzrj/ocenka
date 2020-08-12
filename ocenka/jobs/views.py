@@ -87,6 +87,16 @@ class JobViewSet(viewsets.ModelViewSet):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @action(methods=['post'], detail=True)
+    def deactivate(self, request, pk=None):
+        job = self.get_object()
+        job.deactivate()    
+        return Response(
+            {
+                "message": f"Работа неактивна"
+            },
+            status=status.HTTP_200_OK)
+        
 
 class InitTestDataView(APIView):
     def get(self, request, format=None):

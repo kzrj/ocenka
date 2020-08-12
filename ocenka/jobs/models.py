@@ -23,7 +23,18 @@ class Category(CoreModel):
         return self.ru_name
 
 
+class JobQuerySet(models.QuerySet):
+    def active(self):
+        return self.filter(active=True)
+
+    def inactive(self):
+        return self.filter(active=False)
+
+
 class JobManager(CoreModelManager):
+    def get_queryset(self):
+        return JobQuerySet(self.model, using=self._db).active()
+
     def create_job(self, title, category, budget, address, zakazchik, description=None,
      start_date=None, end_date=None):
         return self.create(title=title, category=category, budget=budget, address=address,
@@ -65,7 +76,11 @@ class Job(CoreModel):
             return f"{d['h']}ч назад"
 
         if d['d'] < 1 and d['h'] < 1:
-            return 'меньше часа назад' 
+            return 'меньше часа назад'
+
+    def deactivate(self):
+        self.active = False
+        self.save()
 
 
 class JobImageQuerySet(models.QuerySet):

@@ -53,6 +53,11 @@ class JobUpdateSerializer(serializers.ModelSerializer):
             ]
 
 
+# class JobDeactivateSerializer(serializers.ModelSerializer):
+#     # ! allow_null doesnt work without default
+#      = serializers.BooleanField(format="%Y-%m-%d", allow_null=True, default=None)
+
+
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
