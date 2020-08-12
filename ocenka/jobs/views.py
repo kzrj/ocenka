@@ -58,16 +58,16 @@ class JobViewSet(viewsets.ModelViewSet):
         queryset = self.filter_queryset(
             self.get_queryset()
         )
-
+        category_serializer = CategorySerializer(Category.objects.all(), many=True)
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = JobSerializer(page, many=True)
-            category_serializer = CategorySerializer(Category.objects.all(), many=True)
             return self.get_paginated_response({'jobs': serializer.data,
                 'categories': category_serializer.data})
 
         serializer = JobSerializer(queryset, many=True)
-        return Response(serializer.data)
+        return Response({'jobs': serializer.data,
+                'categories': category_serializer.data})
 
     def create(self, request):
         pass     
