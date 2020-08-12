@@ -66,7 +66,7 @@ class JobViewSet(viewsets.ModelViewSet):
             return self.get_paginated_response({'jobs': serializer.data,
                 'categories': category_serializer.data})
 
-        serializer = piglets_serializers.JobSerializer(queryset, many=True)
+        serializer = JobSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def create(self, request):
