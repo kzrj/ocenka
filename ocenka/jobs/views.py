@@ -35,6 +35,7 @@ from jobs.serializers import JobSerializer, JobFirstCreateSerializer, CategorySe
      JobUpdateSerializer, JobDeactivateSerializer
 from jobs.testing_utils import create_test_jobs
 from jobs.filters import JobFilter
+from jobs.pagination import JobPagination
 from clients.models import Profile
 from core.utils import create_token
 
@@ -48,6 +49,7 @@ class JobViewSet(viewsets.ModelViewSet):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
     filter_class = JobFilter
+    pagination_class = JobPagination
 
     def get_serializer_class(self):
         if self.action == 'partial_update':
@@ -66,8 +68,10 @@ class JobViewSet(viewsets.ModelViewSet):
                 'categories': category_serializer.data})
 
         serializer = JobSerializer(queryset, many=True)
-        return Response({'jobs': serializer.data,
-                'categories': category_serializer.data})
+        return Response({
+            'jobs': serializer.data,
+            'categories': category_serializer.data
+        })
 
     def create(self, request):
         pass     
