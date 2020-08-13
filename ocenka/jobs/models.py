@@ -4,6 +4,15 @@ from django.db.models import Q
 from django.utils import timezone
 from django.core.exceptions import ValidationError as DjangoValidationError
 
+from viberbot.api.messages import (
+        TextMessage,
+        ContactMessage,
+        PictureMessage,
+        VideoMessage,
+        URLMessage,
+        KeyboardMessage
+    )
+
 from jobs.viber_utils import viber
 from jobs.utils import create_resized_image_from_file
 
