@@ -52,6 +52,8 @@ class JobViewSet(viewsets.ModelViewSet):
     pagination_class = JobPagination
 
     def get_serializer_class(self):
+        if self.action == 'create':
+            return JobUpdateSerializer
         if self.action == 'partial_update':
             return JobUpdateSerializer
         return self.serializer_class
@@ -74,7 +76,27 @@ class JobViewSet(viewsets.ModelViewSet):
         })
 
     def create(self, request):
-        pass     
+        serializer = JobUpdateSerializer(data=request.data)
+        if serializer.is_valid():
+            # get or create profile
+            profile = request.user.profile
+            job = Job.objects.create_job(
+                title=serializer.validated_data['title'],
+                category=serializer.validated_data['category'],
+                budget=serializer.validated_data['budget'],
+                address=serializer.validated_data['address'],
+                zakazchik=profile,
+                description=serializer.validated_data['description'],
+                start_date=serializer.validated_data['start_date'],
+                end_date=serializer.validated_data['end_date']
+                )
+            return Response(
+                {
+                    "message": "Created"
+                },
+                status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, pk=None):
         pass
