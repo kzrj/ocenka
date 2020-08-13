@@ -17,7 +17,7 @@ from jobs.viber_utils import viber
 from jobs.utils import create_resized_image_from_file
 
 from core.models import CoreModel, CoreModelManager
-from clients.models import Profile
+from subscriptions.models import IspolnitelSubscription
 
 
 class Category(CoreModel):
@@ -50,9 +50,9 @@ class JobManager(CoreModelManager):
          zakazchik=zakazchik, description=description, start_date=start_date, end_date=end_date)
 
         # active subs users
-        for profile in Profile.objects.filter(viber_id__isnull=False):
+        for sub in IspolnitelSubscription.objects.filter(active=True):
             text_message = TextMessage(text=f"{job.title} {job.budget}")
-            viber.send_messages(profile.viber_id, [
+            viber.send_messages(sub.profile.viber_id, [
                 text_message, 
             ])
         return job
@@ -67,9 +67,9 @@ class Job(CoreModel):
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
 
-    zakazchik = models.ForeignKey(Profile, on_delete=models.CASCADE,
+    zakazchik = models.ForeignKey('clients.Profile', on_delete=models.CASCADE,
      related_name='jobs_as_zakazchik')
-    ispolnitel = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True,
+    ispolnitel = models.ForeignKey('clients.Profile', on_delete=models.SET_NULL, null=True,
      related_name='jobs_as_ispolnitel')
 
     active = models.BooleanField(default=True) 

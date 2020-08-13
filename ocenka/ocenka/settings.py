@@ -44,6 +44,7 @@ DJANGO_APPS = [
 OWN_APPS = [
     'jobs.apps.JobsConfig',
     'clients.apps.ClientsConfig',
+    'subscriptions.apps.SubscriptionsConfig',
 ]
 
 
