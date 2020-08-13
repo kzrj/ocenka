@@ -11,6 +11,37 @@ body{
 	/* height: 100% !important; */
 }
 
+/*CATEGORIES*/
+.btn-category{
+	font-weight: 450;
+	
+	min-height: 65px;
+	min-width: 65px;
+	float: left;
+	
+	justify-content: center;
+    align-items: center;
+	
+	display: flex;
+    /* vertical-align: center; */
+    margin-right: 10px;
+	margin-bottom: 10px;
+	
+	padding-left: 6px;
+	padding-right: 6px;
+    
+    border-radius: 12px;
+    box-shadow: 0 -2px 8px 0 rgba(0,0,0,.04), 0 8px 8px 0 rgba(0,0,0,.04);
+ 
+}
+
+.btn-category-active{
+	background: #919399;
+	color: #ffffff;
+}
+
+/*END CATEGORIES*/
+
 /*JOB LIST*/
 .job-block{
     border-radius: 12px;
@@ -48,10 +79,15 @@ body{
 .job-zakazchik{
 	font-size: 0.86rem;
 }
-
 /*END JOB LIST*/
 
+/*JOB FORM*/
 
+.job-form-desc{
+	height: 200px;
+}
+
+/*END JOB FORM*/
 .footer {
   bottom: 0;
   width: 100%;
