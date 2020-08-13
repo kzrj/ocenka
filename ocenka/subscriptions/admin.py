@@ -3,6 +3,6 @@ from django.contrib import admin
 from subscriptions.models import IspolnitelSubscription
 
 
-@admin.register(IspolnitelSubscriptionofile)
+@admin.register(IspolnitelSubscription)
 class IspolnitelSubscriptionAdmin(admin.ModelAdmin):
     list_display = [f.name for f in IspolnitelSubscription._meta.fields]
