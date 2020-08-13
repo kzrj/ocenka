@@ -46,7 +46,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 
 class JobViewSet(viewsets.ModelViewSet):
-    queryset = Job.objects.all()
+    queryset = Job.objects.all().order_by('-created_at')
     serializer_class = JobSerializer
     filter_class = JobFilter
     pagination_class = JobPagination

@@ -76,6 +76,8 @@ class Job(CoreModel):
 
     objects = JobManager()
 
+    # class Meta
+
     def __str__(self):
         return self.title
 
