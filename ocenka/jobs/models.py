@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.utils import timezone
 from django.core.exceptions import ValidationError as DjangoValidationError
 
-
+from jobs.viber_utils import viber
 from jobs.utils import create_resized_image_from_file
 
 from core.models import CoreModel, CoreModelManager
@@ -37,8 +37,16 @@ class JobManager(CoreModelManager):
 
     def create_job(self, title, category, budget, address, zakazchik, description=None,
      start_date=None, end_date=None):
-        return self.create(title=title, category=category, budget=budget, address=address,
+        job = self.create(title=title, category=category, budget=budget, address=address,
          zakazchik=zakazchik, description=description, start_date=start_date, end_date=end_date)
+
+        # active subs users
+        for profile in Profile.objects.all():
+            text_message = TextMessage(text=f"{job.title} {job.budget}")
+            viber.send_messages(profile.viber_id, [
+                text_message, 
+            ])
+        return job
 
 
 class Job(CoreModel):
