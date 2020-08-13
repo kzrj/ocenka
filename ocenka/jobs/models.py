@@ -50,7 +50,7 @@ class JobManager(CoreModelManager):
          zakazchik=zakazchik, description=description, start_date=start_date, end_date=end_date)
 
         # active subs users
-        for profile in Profile.objects.all():
+        for profile in Profile.objects.all(viber_id__isnull=False):
             text_message = TextMessage(text=f"{job.title} {job.budget}")
             viber.send_messages(profile.viber_id, [
                 text_message, 
