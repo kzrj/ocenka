@@ -7,7 +7,7 @@ from jobs.serializers import CategorySerializer
 
 
 class ISubSerializer(serializers.ModelSerializer):
-	categories = CategorySerializer(many=True)
+    categories = CategorySerializer(many=True)
 
     class Meta:
         model = ISub
