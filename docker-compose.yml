@@ -31,7 +31,8 @@ services:
     # command: bash -c "cd ocenka &&
     #                   python manage.py migrate &&
     #                   python manage.py makemigrations --no-input &&
-    #                   python manage.py test jobs.tests.test_views"
+    #                   python manage.py test jobs.tests.test_models --exclude-tag=with_viber"
+                      # python manage.py test jobs.tests.test_models --exclude-tag=with_viber"
 
     restart: unless-stopped
     command: bash -c "cd ocenka && 

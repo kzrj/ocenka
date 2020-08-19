@@ -5,15 +5,15 @@ from django.contrib.auth.models import User
 from core.models import CoreModel, CoreModelManager
 
 
-class IspolnitelSubscriptionQuerySet(models.QuerySet):
+class ISubQuerySet(models.QuerySet):
     pass
 
 
-class IspolnitelSubscriptionManager(CoreModelManager):
+class ISubManager(CoreModelManager):
     pass
 
 
-class IspolnitelSubscription(CoreModel):
+class ISub(CoreModel):
     profile = models.OneToOneField('clients.Profile', on_delete=models.SET_NULL, null=True, 
         related_name='isub')
 
@@ -23,7 +23,7 @@ class IspolnitelSubscription(CoreModel):
 
     active = models.BooleanField(default=True)  
 
-    objects = IspolnitelSubscriptionManager()
+    objects = ISubManager()
 
     def __str__(self):
         return f'Sub {self.profile.nickname}'

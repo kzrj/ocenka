@@ -12,11 +12,12 @@ from rest_framework import routers
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
 from jobs.views import JobViewSet, InitTestDataView, viber_view, CategoryViewSet
+from subscriptions.views import ISubViewSet
 
 router = routers.DefaultRouter()
 router.register(r'jobs', JobViewSet, basename='jobs')
 router.register(r'categories', CategoryViewSet, basename='categories')
-# router.register(r'shops', ShopViewSet, basename='shops')
+router.register(r'subs', ISubViewSet, basename='subs')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

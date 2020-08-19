@@ -17,7 +17,7 @@ from jobs.viber_utils import viber
 from jobs.utils import create_resized_image_from_file
 
 from core.models import CoreModel, CoreModelManager
-from subscriptions.models import IspolnitelSubscription
+from subscriptions.models import ISub
 
 
 class Category(CoreModel):
@@ -48,9 +48,12 @@ class JobManager(CoreModelManager):
      start_date=None, end_date=None):
         job = self.create(title=title, category=category, budget=budget, address=address,
          zakazchik=zakazchik, description=description, start_date=start_date, end_date=end_date)
+        return job
 
-        # active subs users
-        for sub in IspolnitelSubscription.objects.filter(active=True):
+    def create_job_and_mailing(self, **kwargs):
+        job = self.create(**kwargs)
+        category = kwargs.get('category')
+        for sub in category.isubs.filter(active=True):
             text_message = TextMessage(text=f"{job.title} {job.budget}")
             viber.send_messages(sub.profile.viber_id, [
                 text_message, 

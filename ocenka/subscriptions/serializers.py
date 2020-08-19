@@ -1,11 +1,17 @@
 # -*- coding: utf-8 -*-
 from rest_framework import serializers
 
-# from clients.models import Profile
+from subscriptions.models import ISub
+from jobs.models import Category
 
 
-# class ProfileSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Profile
-#         fields = ['id', 'nickname', 'viber_name', 'viber_avatar', 'zakazchik',
-#         	 'ispolnitel']
+class ISubSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ISub
+        fields = '__all__'
+        # depth = 1
+
+
+class ISubCreateOrActiveSerializer(serializers.Serializer):
+    categories = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all(),
+         many=True, allow_null=True)

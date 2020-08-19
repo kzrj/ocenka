@@ -65,3 +65,6 @@ class Profile(CoreModel):
         self.zakazchik = True
         self.save()
 
+    def mark_as_ispolnitel(self):
+        self.ispolnitel = True
+        self.save()

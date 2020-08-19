@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from subscriptions.models import IspolnitelSubscription
+from subscriptions.models import ISub
 
 
-@admin.register(IspolnitelSubscription)
-class IspolnitelSubscriptionAdmin(admin.ModelAdmin):
-    list_display = [f.name for f in IspolnitelSubscription._meta.fields]
+@admin.register(ISub)
+class ISubAdmin(admin.ModelAdmin):
+    list_display = [f.name for f in ISub._meta.fields]

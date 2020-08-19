@@ -111,7 +111,7 @@ class JobViewSet(viewsets.ModelViewSet):
             profile.phone = serializer.validated_data['phone']
             profile.mark_as_zakazchik()
 
-            job = Job.objects.create_job(
+            job = Job.objects.create_job_and_mailing(
                 title=serializer.validated_data['title'],
                 category=serializer.validated_data['category'],
                 budget=serializer.validated_data['budget'],
@@ -119,7 +119,7 @@ class JobViewSet(viewsets.ModelViewSet):
                 zakazchik=profile,
                 description=serializer.validated_data['description'],
                 start_date=serializer.validated_data['start_date'],
-                end_date=serializer.validated_data['end_date']
+                end_date=serializer.validated_data['end_date'],
                 )
             return Response(
                 {
