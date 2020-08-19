@@ -11,7 +11,7 @@ body{
 	/* height: 100% !important; */
 }
 
-/*CATEGORIES*/
+/* category btn */
 .btn-category{
 	font-weight: 450;
 	
@@ -40,58 +40,116 @@ body{
 	color: #ffffff;
 }
 
-/*END CATEGORIES*/
-
-/*JOB LIST*/
-.job-block{
+.item-shop{
     border-radius: 12px;
     box-shadow: 0 -2px 8px 0 rgba(0,0,0,.04), 0 8px 8px 0 rgba(0,0,0,.04);
+	
 	padding-left: 10px;
 	padding-top: 10px;
 	padding-bottom: 3px;
+	
 	margin-top: 10px;
 }
 
-.job-title{
-	font-size: 1.1rem;
-	margin-bottom: 5px;
-}
-
-.job-budget{
+.shop-name{
 	font-size: 1.2rem;
+}
+
+.shop-ratings{
+	font-size: 0.9rem;
+	padding-left: 0px;
+	padding-right: 10px;
+}
+
+.shop-feedbacks-count{
+	padding-left: 0px !important;
+}
+
+.shop-stars{
+	padding-left: 0px !important;
+}
+
+.item-product-title{
+	font-size: 0.85rem;
+	margin-bottom: 1px;
+	color: #596067;
+}
+
+.item-product-img{
+	/* float:left; */
+	display: block;
+	border-radius: 12px;
+	margin-bottom: 3px;
+}
+
+.shop-detail{
+	background: #f6f6f6;
+}
+
+.shop-products{
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.shop-product{
+	background-color: #fff;
 	margin-bottom: 5px;
+	padding-top: 15px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
-.job-description{
-	font-size: 0.91rem;
-	margin-bottom: 5px;
+.shop-product-title{
+	font-weight: 400;
+	color: #2a2f2c;
 }
 
-.job-address{
-	font-size: 0.82rem;
-	margin-bottom: 5px;
+.shop-product-description{
+	color: #919399;
+	font-size: 0.8rem;
 }
 
-.job-created-ago{
-	font-size: 0.72rem;
+.shop-product-price{
+	font-size: 1.2rem;
+	font-weight: 500;
+	color: #2a2f2c;
 }
 
-.job-zakazchik{
-	font-size: 0.86rem;
-}
-/*END JOB LIST*/
-
-/*JOB FORM*/
-
-.job-form-desc{
-	height: 200px;
+.shop-header{
+	background-color: #fff;
+	margin-left: -15px;
+	margin-right: -15px;
+	padding-left: 15px;
+	padding-bottom: 15px;
 }
 
-/*END JOB FORM*/
+.shop-title{
+	font-size: 1.4rem;
+}
+
+.shop-ratings{
+	padding-left: 1px !important;
+	padding-right: 15px !important;
+	padding-top: 7px;
+	font-size: .7rem;
+	text-align: center !important;
+	
+}
+
+.shop-descrtiption{
+	font-size: 0.8rem;
+}
+
+.shop-categories{
+	padding-top: 10px;
+}
+
 .footer {
+  /* position: absolute; */
   bottom: 0;
   width: 100%;
-  height: 3.5rem;           
+  height: 3.5rem;            /* Footer height */
   background: red;
 }
 
@@ -99,4 +157,3 @@ body{
 	padding-bottom: 2.5rem;
 	min-height: 700px;
 }
-
