@@ -3,13 +3,15 @@ from rest_framework import serializers
 
 from subscriptions.models import ISub
 from jobs.models import Category
+from jobs.serializers import CategorySerializer
 
 
 class ISubSerializer(serializers.ModelSerializer):
+	categories = CategorySerializer(many=True)
+
     class Meta:
         model = ISub
-        fields = '__all__'
-        # depth = 1
+        fields = ['categories']
 
 
 class ISubCreateOrActiveSerializer(serializers.Serializer):
