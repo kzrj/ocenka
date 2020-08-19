@@ -6,9 +6,9 @@ from subscriptions.serializers import  ISubSerializer
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-	isub = ISubSerializer(allow_null=True)
+    isub = ISubSerializer(allow_null=True)
 
     class Meta:
         model = Profile
         fields = ['id', 'nickname', 'viber_name', 'viber_avatar', 'zakazchik',
-        	 'ispolnitel', 'isub']
+             'ispolnitel', 'isub']
