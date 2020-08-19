@@ -80,7 +80,7 @@ class JobViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             # get or create profile
             profile = request.user.profile
-            job = Job.objects.create_job(
+            job = Job.objects.create_job_and_mailing(
                 title=serializer.validated_data['title'],
                 category=serializer.validated_data['category'],
                 budget=serializer.validated_data['budget'],
