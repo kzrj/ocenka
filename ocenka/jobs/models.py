@@ -121,6 +121,7 @@ class JobImageManager(CoreModelManager):
         catalog_image_name = f'catalog_{job_image.original.name}'
         catalog_image = create_resized_image_from_file(image_file, 180)
         job_image.catalog_image.save(catalog_image_name, catalog_image)
+        thumb_image_name = f'thumb_{job_image.original.name}'
         thumb_image = create_resized_image_from_file(image_file, 50)
         job_image.thumb_image.save(catalog_image_name, thumb_image)
 
