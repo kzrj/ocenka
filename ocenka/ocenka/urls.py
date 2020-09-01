@@ -29,4 +29,4 @@ urlpatterns = [
     path('viber/', viber_view, name='viber'),
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
-+ static('/media/', document_root=os.path.join(settings.BASE_DIR, '../media'))
++ static('media/', document_root=os.path.join(settings.BASE_DIR, '../media'))
