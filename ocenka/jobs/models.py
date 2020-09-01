@@ -121,6 +121,8 @@ class JobImageManager(CoreModelManager):
         catalog_image_name = f'catalog_{job_image.original.name}'
         catalog_image = create_resized_image_from_file(image_file, 480)
         job_image.catalog_image.save(catalog_image_name, catalog_image)
+        thumb_image = create_resized_image_from_file(image_file, 50)
+        job_image.thumb_image.save(catalog_image_name, thumb_image)
 
         return job_image
 
@@ -131,6 +133,7 @@ class JobImage(CoreModel):
 
     original = models.FileField(null=True, blank=True)
     catalog_image = models.FileField(null=True, blank=True)
+    thumb_image = models.FileField(null=True, blank=True)
 
     objects = JobImageManager()
 
