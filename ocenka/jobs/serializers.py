@@ -1,13 +1,32 @@
 # -*- coding: utf-8 -*-
 from rest_framework import serializers
 
-from jobs.models import Job, Category
+from jobs.models import Job, Category, JobImage
+
+
+class JobImageSerializer(serializers.ModelSerializer):
+    catalog_image = serializers.ReadOnlyField(source='catalog_image.url')
+
+    class Meta:
+        model = JobImage
+        fields = ['catalog_image', 'id']
+
+
+class JobImageCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobImage
+        fields = ['original']
+
+
+class JobImageIdSerializer(serializers.Serializer):
+    image = serializers.PrimaryKeyRelatedField(queryset=JobImage.objects.all())
 
 
 class JobSerializer(serializers.ModelSerializer):
     category = serializers.StringRelatedField()
     zakazchik = serializers.ReadOnlyField(source='zakazchik.nickname')
     created_ago = serializers.ReadOnlyField()
+    images = JobImageSerializer(many=True)
 
     class Meta:
         model = Job

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.test import TransactionTestCase, tag
 
-from jobs.models import Job, Category
+from jobs.models import Job, Category, JobImage
 from clients.models import Profile
 from subscriptions.models import ISub
 
@@ -31,7 +31,16 @@ class JobTest(TransactionTestCase):
     		description='Test desc')
 
 
-    # @tag('with_file')
-    # def test_create_shop_with_product(self):
-    #     category = Category.objects.all().first()
-    #     image = open('../data/polufabrikati.jpg', 'rb')
+class JobImageTest(TransactionTestCase):
+    def setUp(self):
+        jobs_testing.create_test_jobs(images=False)
+        self.category1 = Category.objects.all().first()
+        self.zakazchik1 = Profile.objects.filter(zakazchik=True).first()
+
+    @tag('with_file')
+    def test_create_job_image(self):
+        category = Category.objects.all().first()
+        job = Job.objects.all().first()
+        image = open('../data/dom.jpg', 'rb')
+        image = JobImage.objects.create_job_image(image_file=image, job=job)
+        self.assertTrue('catalog' in image.catalog_image.name)

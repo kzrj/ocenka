@@ -18,7 +18,6 @@ class JobsViewSetTest(APITestCase):
         jobs_testing.create_test_jobs(images=False)
         self.user1 = User.objects.get(profile__viber_name="Елена")
 
-
     def test_partial_update(self):
         self.client.force_authenticate(user=self.user1)
         job = Job.objects.filter(zakazchik=self.user1.profile).first()
@@ -47,3 +46,21 @@ class JobsViewSetTest(APITestCase):
         self.assertEqual(job.start_date, None)
         self.assertEqual(job.title, 'Test2')
         self.client.logout()
+
+    def test_add_image_delete_image(self):
+        self.client.force_authenticate(user=self.user1)
+        job = Job.objects.filter(zakazchik=self.user1.profile).first()
+        image = open('../data/dom.jpg', 'rb')
+        response = self.client.post('/api/jobs/%s/add_image/' % job.pk, \
+            {
+                'original': image,
+            })
+        self.assertEqual(response.data['message'], 'Изображение добавлено.')
+
+        job.refresh_from_db()
+        image_id = job.images.all().first()
+        response = self.client.post('/api/jobs/%s/delete_image/' % job.pk, \
+            {
+                'image': image_id.pk
+            })
+        self.assertEqual(response.data['message'], 'Изображение удалено.')
