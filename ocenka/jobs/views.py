@@ -188,6 +188,7 @@ class JobViewSet(viewsets.ModelViewSet):
             
             return Response(
                 {
+                    "job": JobSerializer(job).data,
                     "message": "Изображение добавлено."
                 },
                 status=status.HTTP_200_OK)
@@ -204,6 +205,7 @@ class JobViewSet(viewsets.ModelViewSet):
             
             return Response(
                 {
+                    "job": JobSerializer(job).data,
                     "message": "Изображение удалено."
                 },
                 status=status.HTTP_200_OK)
