@@ -39,39 +39,6 @@ from jobs.filters import JobFilter
 from jobs.pagination import JobPagination
 from clients.models import Profile
 from core.utils import create_token
-
-
-# class JobImageViewSet(viewsets.ModelViewSet):
-#     queryset = JobImage.objects.all()
-#     serializer_class = JobImageSerializer
-
-#     def get_serializer_class(self):
-#         if self.action == 'create':
-#             return JobImageCreateSerializer
-#         return self.serializer_class
-
-#     def create(self, request):
-#         serializer = JobImageCreateSerializer(data=request.data)
-#         if serializer.is_valid():
-#             # get or create profile
-#             profile = request.user.profile
-#             job = Job.objects.create_job_and_mailing(
-#                 title=serializer.validated_data['title'],
-#                 category=serializer.validated_data['category'],
-#                 budget=serializer.validated_data['budget'],
-#                 address=serializer.validated_data['address'],
-#                 zakazchik=profile,
-#                 description=serializer.validated_data['description'],
-#                 start_date=serializer.validated_data['start_date'],
-#                 end_date=serializer.validated_data['end_date']
-#                 )
-#             return Response(
-#                 {
-#                     "message": "Created"
-#                 },
-#                 status=status.HTTP_200_OK)
-#         else:
-#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
 class CategoryViewSet(viewsets.ModelViewSet):
