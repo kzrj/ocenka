@@ -33,7 +33,7 @@ from viberbot.api.viber_requests import (
 from jobs.models import Job, Category, JobImage
 from jobs.serializers import JobSerializer, JobFirstCreateSerializer, CategorySerializer, \
      JobUpdateSerializer, JobDeactivateSerializer, JobImageCreateSerializer, JobImageSerializer, \
-     JobImageIdSerializer
+     JobImageIdSerializer, JobFullSerializer
 from jobs.testing_utils import create_test_jobs
 from jobs.filters import JobFilter
 from jobs.pagination import JobPagination
@@ -86,6 +86,8 @@ class JobViewSet(viewsets.ModelViewSet):
     pagination_class = JobPagination
 
     def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return JobFullSerializer
         if self.action == 'create':
             return JobUpdateSerializer
         if self.action == 'partial_update':

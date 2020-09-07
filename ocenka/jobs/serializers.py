@@ -35,6 +35,10 @@ class JobSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class JobFullSerializer(JobSerializer):
+    zakazchik_phone = serializers.ReadOnlyField(source='zakazchik.phone')
+    
+
 class JobFirstCreateSerializer(serializers.ModelSerializer):
     name = serializers.CharField()
     phone = serializers.IntegerField()
