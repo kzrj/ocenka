@@ -7,10 +7,11 @@ from jobs.models import Job, Category, JobImage
 class JobImageSerializer(serializers.ModelSerializer):
     catalog_image = serializers.ReadOnlyField(source='catalog_image.url')
     thumb_image = serializers.ReadOnlyField(source='thumb_image.url')
+    non_zoom_image = serializers.ReadOnlyField(source='non_zoom_image.url')
 
     class Meta:
         model = JobImage
-        fields = ['catalog_image', 'thumb_image', 'id']
+        fields = ['catalog_image', 'thumb_image', 'non_zoom_image', 'id']
 
 
 class JobImageCreateSerializer(serializers.ModelSerializer):
