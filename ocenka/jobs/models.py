@@ -121,9 +121,14 @@ class JobImageManager(CoreModelManager):
         catalog_image_name = f'catalog_{job_image.original.name}'
         catalog_image = create_resized_image_from_file(image_file, 180)
         job_image.catalog_image.save(catalog_image_name, catalog_image)
+
         thumb_image_name = f'thumb_{job_image.original.name}'
         thumb_image = create_resized_image_from_file(image_file, 50)
         job_image.thumb_image.save(catalog_image_name, thumb_image)
+
+        non_zoom_image_name = f'non_zoom_{job_image.original.name}'
+        non_zoom_image = create_resized_image_from_file(image_file, 300)
+        job_image.non_zoom_image.save(non_zoom_image_name, non_zoom_image)
 
         return job_image
 
@@ -135,6 +140,7 @@ class JobImage(CoreModel):
     original = models.FileField(null=True, blank=True)
     catalog_image = models.FileField(null=True, blank=True)
     thumb_image = models.FileField(null=True, blank=True)
+    non_zoom_image = models.FileField(null=True, blank=True)
 
     objects = JobImageManager()
 
