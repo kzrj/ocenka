@@ -10,5 +10,5 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ['id', 'nickname', 'viber_name', 'viber_avatar', 'zakazchik',
+        fields = ['id', 'nickname', 'viber_name', 'viber_avatar', 'zakazchik', 'phone',
              'ispolnitel', 'isub']
