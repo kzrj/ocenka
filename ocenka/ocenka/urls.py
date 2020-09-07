@@ -13,7 +13,7 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify
 
 from jobs.views import JobViewSet, InitTestDataView, viber_view, CategoryViewSet
 from subscriptions.views import ISubViewSet
-from clients.view import ProfileViewSet
+from clients.views import ProfileViewSet
 
 router = routers.DefaultRouter()
 router.register(r'jobs', JobViewSet, basename='jobs')
