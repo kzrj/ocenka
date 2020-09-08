@@ -194,8 +194,9 @@ viber = Api(BotConfiguration(
     auth_token='4ba8b47627e7dd45-896232bcd5f44988-d6eba79009c0e27'
 ))
 
+# url='https://svoyaeda.su'
 
-def login_keyboard(viber_id=None):
+def login_keyboard(viber_id=None, url='http://192.168.1.3:3000'):
     # get or create user with profile.viber_id = viber_id
     # gen token
     token = 'token'
@@ -210,7 +211,7 @@ def login_keyboard(viber_id=None):
                     "TextHAlign": "center",
                     "TextVAlign": "middle",
                     "ActionType": "open-url",
-                    "ActionBody": f"https://svoyaeda.su/dm/login/v/{viber_id}",
+                    "ActionBody": f"{url}/dm/login/v/{viber_id}",
                     "OpenURLType": "internal",
                     "BgColor": "#f7bb3f",
                     "Image": "https://s18.postimg.org/9tncn0r85/sushi.png"
