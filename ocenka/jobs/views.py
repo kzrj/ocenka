@@ -255,7 +255,7 @@ def viber_view(request):
     if isinstance(viber_request, ViberConversationStartedRequest):
         viber_user = viber_request.user
 
-        text_message = TextMessage(text="Приветствие! Тут текст с приветствием. Напишите что нибудь чтобы войти")
+        text_message = TextMessage(text="Приветствие! Тут текст с приветствием. Напишите чdто нибудь чтобы войти")
         viber.send_messages(viber_request.user.id, [
             text_message, 
         ])
