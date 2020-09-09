@@ -28,8 +28,9 @@ viber = Api(BotConfiguration(
     auth_token='4ba8b47627e7dd45-896232bcd5f44988-d6eba79009c0e27'
 ))
 
-# 'https://svoyaeda.su'
-def login_keyboard(viber_id=None, url='http://192.168.1.3:3000'):
+url = 'https://svoyaeda.su'
+# url = 'http://192.168.1.3:3000'
+def login_keyboard(viber_id=None, url=url):
     # get or create user with profile.viber_id = viber_id
     # gen token
     token = 'token'
