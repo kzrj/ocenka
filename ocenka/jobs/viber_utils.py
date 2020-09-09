@@ -29,7 +29,7 @@ viber = Api(BotConfiguration(
 ))
 
 
-def login_keyboard(viber_id=None):
+def login_keyboard(viber_id=None, url='https://svoyaeda.su'):
     # get or create user with profile.viber_id = viber_id
     # gen token
     token = 'token'
@@ -37,41 +37,17 @@ def login_keyboard(viber_id=None):
             "Type": "keyboard",
             "Buttons": [
                {
-                    "Columns": 1,
+                    "Columns": 6,
                     "Rows": 2,
-                    "Text": "<br><font color=#494E67><b>Открыть сайт</b></font>",
+                    "Text": "<br><font color=#494E67 size=20><b>Открыть сайт и авторизоваться</b></font>",
                     "TextSize": "regular",
                     "TextHAlign": "center",
                     "TextVAlign": "middle",
                     "ActionType": "open-url",
-                    "ActionBody": f"https://svoyaeda.su/dm/login/v/{viber_id}",
+                    "ActionBody": f"{url}/dm/login/v/{viber_id}",
                     "OpenURLType": "internal",
                     "BgColor": "#f7bb3f",
                     "Image": "https://s18.postimg.org/9tncn0r85/sushi.png"
-                },
-                {
-                    "Columns": 1,
-                    "Rows": 2,
-                    "BgColor": "#e6f5ff",
-                    "BgMedia": "http://link.to.button.image",
-                    "BgMediaType": "picture",
-                    "BgLoop": True,
-                    "ActionType": "reply",
-                    "ActionBody": "MASS_MESSAGES",
-                    "ReplyType": "message",
-                    "Text": "Много месаг"
-                },
-                {
-                    "Columns": 1,
-                    "Rows": 2,
-                    "BgColor": "#e6f5ff",
-                    "BgMedia": "http://link.to.button.image",
-                    "BgMediaType": "picture",
-                    "BgLoop": True,
-                    "ActionType": "reply",
-                    "ActionBody": "MASS_MESSAGES2",
-                    "ReplyType": "message",
-                    "Text": "XZ"
                 },
             ],
             "InputFieldState": 'regular'

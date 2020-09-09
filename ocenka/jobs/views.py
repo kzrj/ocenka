@@ -7,6 +7,7 @@ from rest_framework.decorators import action
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 
+from jobs.viber_utils import viber, login_keyboard
 from viberbot import Api
 from viberbot.api.bot_configuration import BotConfiguration
 from viberbot.api.messages import VideoMessage
@@ -186,63 +187,6 @@ class InitTestDataView(APIView):
     def get(self, request, format=None):
         create_test_jobs()
         return Response({'msg': 'Done.'})
-
-
-viber = Api(BotConfiguration(
-    name='dm-eda',
-    avatar='http://site.com/avatar.jpg',
-    auth_token='4ba8b47627e7dd45-896232bcd5f44988-d6eba79009c0e27'
-))
-
-# url='https://svoyaeda.su'
-
-def login_keyboard(viber_id=None, url='https://svoyaeda.su'):
-    # get or create user with profile.viber_id = viber_id
-    # gen token
-    token = 'token'
-    return {
-            "Type": "keyboard",
-            "Buttons": [
-               {
-                    "Columns": 6,
-                    "Rows": 2,
-                    "Text": "<br><font color=#494E67 size=20><b>Открыть сайт и авторизоваться</b></font>",
-                    "TextSize": "regular",
-                    "TextHAlign": "center",
-                    "TextVAlign": "middle",
-                    "ActionType": "open-url",
-                    "ActionBody": f"{url}/dm/login/v/{viber_id}",
-                    "OpenURLType": "internal",
-                    "BgColor": "#f7bb3f",
-                    "Image": "https://s18.postimg.org/9tncn0r85/sushi.png"
-                },
-                # {
-                #     "Columns": 1,
-                #     "Rows": 2,
-                #     "BgColor": "#e6f5ff",
-                #     "BgMedia": "http://link.to.button.image",
-                #     "BgMediaType": "picture",
-                #     "BgLoop": True,
-                #     "ActionType": "reply",
-                #     "ActionBody": "MASS_MESSAGES",
-                #     "ReplyType": "message",
-                #     "Text": "Много месаг"
-                # },
-                # {
-                #     "Columns": 1,
-                #     "Rows": 2,
-                #     "BgColor": "#e6f5ff",
-                #     "BgMedia": "http://link.to.button.image",
-                #     "BgMediaType": "picture",
-                #     "BgLoop": True,
-                #     "ActionType": "reply",
-                #     "ActionBody": "MASS_MESSAGES2",
-                #     "ReplyType": "message",
-                #     "Text": "XZ"
-                # },
-            ],
-            "InputFieldState": 'regular'
-        }
 
 
 @csrf_exempt

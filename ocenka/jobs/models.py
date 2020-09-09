@@ -55,13 +55,14 @@ class JobManager(CoreModelManager):
         category = kwargs.get('category')
 
         msg = f"Опубликована новая работа(проект) : {job.title}. \
-        		Бюджет до {job.budget}. \n \
+        		Бюджет до {job.budget}.\
         		https://svoyaeda.su/jobs/{job.id}/"
 
         for sub in category.isubs.filter(active=True):
             text_message = TextMessage(text=msg)
             viber.send_messages(sub.profile.viber_id, [
-                text_message, 
+                text_message,
+
             ])
         return job
 
