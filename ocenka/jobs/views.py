@@ -206,7 +206,7 @@ def login_keyboard(viber_id=None, url='https://svoyaeda.su'):
                {
                     "Columns": 6,
                     "Rows": 2,
-                    "Text": "<br><font color=#494E67><b>Открыть сайт и авторизоваться</b></font>",
+                    "Text": "<br><font color=#494E67 size=20><b>Открыть сайт и авторизоваться</b></font>",
                     "TextSize": "regular",
                     "TextHAlign": "center",
                     "TextVAlign": "middle",
@@ -269,10 +269,9 @@ def viber_view(request):
 
     text_message = TextMessage(text="Нажмите кнопку!")
 
-    url_message = URLMessage(media="https://svoyaeda.su/api/");
     token = create_token(customer.user)
     viber.send_messages(viber_request.sender.id, [
-        text_message, url_message,
+        text_message, 
         KeyboardMessage(tracking_data='TRACKING_CREATE_AD_PHONE', 
                         keyboard=login_keyboard(token),
                         min_api_version=6)
