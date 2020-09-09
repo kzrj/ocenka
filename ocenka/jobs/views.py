@@ -249,11 +249,15 @@ def login_keyboard(viber_id=None, url='https://svoyaeda.su'):
 def viber_view(request):
     viber_request = viber.parse_request(request.body)
 
+    if isinstance(viber_request, ViberUnsubscribedRequest):
+        return HttpResponse('ok', status=200)
+
     if isinstance(viber_request, ViberConversationStartedRequest):
         viber_user = viber_request.user
         viber.send_messages(viber_request.user.id, [
             TextMessage(text="Приветствие! Тут текст с приветствием. Напишите что нибудь чтобы войти") 
         ])
+        return HttpResponse('ok', status=200)
     else:
         viber_user = viber_request.sender
 
@@ -262,9 +266,6 @@ def viber_view(request):
             viber_name=viber_user.name,
             viber_avatar=viber_user.avatar,
             )
-
-    if isinstance(viber_request, ViberUnsubscribedRequest):
-        return HttpResponse('ok', status=200)
 
     text_message = TextMessage(text="Нажмите кнопку!")
 
