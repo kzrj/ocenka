@@ -40,7 +40,7 @@ class JobFullSerializer(JobSerializer):
     
 
 class JobFirstCreateSerializer(serializers.ModelSerializer):
-    name = serializers.CharField()
+    nickname = serializers.CharField()
     phone = serializers.IntegerField()
     # ! allow_null doesnt work without default
     start_date = serializers.DateField(format="%Y-%m-%d", allow_null=True, default=None)
@@ -56,7 +56,7 @@ class JobFirstCreateSerializer(serializers.ModelSerializer):
             'description',
             'start_date',
             'end_date', 
-            'name',
+            'nickname',
             'phone',
             ]
 
