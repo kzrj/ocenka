@@ -204,9 +204,9 @@ def login_keyboard(viber_id=None, url='http://192.168.1.3:3000'):
             "Type": "keyboard",
             "Buttons": [
                {
-                    "Columns": 1,
+                    "Columns": 6,
                     "Rows": 2,
-                    "Text": "<br><font color=#494E67><b>Открыть сайт</b></font>",
+                    "Text": "<br><font color=#494E67><b>Открыть сайт и авторизоваться</b></font>",
                     "TextSize": "regular",
                     "TextHAlign": "center",
                     "TextVAlign": "middle",
@@ -216,30 +216,30 @@ def login_keyboard(viber_id=None, url='http://192.168.1.3:3000'):
                     "BgColor": "#f7bb3f",
                     "Image": "https://s18.postimg.org/9tncn0r85/sushi.png"
                 },
-                {
-                    "Columns": 1,
-                    "Rows": 2,
-                    "BgColor": "#e6f5ff",
-                    "BgMedia": "http://link.to.button.image",
-                    "BgMediaType": "picture",
-                    "BgLoop": True,
-                    "ActionType": "reply",
-                    "ActionBody": "MASS_MESSAGES",
-                    "ReplyType": "message",
-                    "Text": "Много месаг"
-                },
-                {
-                    "Columns": 1,
-                    "Rows": 2,
-                    "BgColor": "#e6f5ff",
-                    "BgMedia": "http://link.to.button.image",
-                    "BgMediaType": "picture",
-                    "BgLoop": True,
-                    "ActionType": "reply",
-                    "ActionBody": "MASS_MESSAGES2",
-                    "ReplyType": "message",
-                    "Text": "XZ"
-                },
+                # {
+                #     "Columns": 1,
+                #     "Rows": 2,
+                #     "BgColor": "#e6f5ff",
+                #     "BgMedia": "http://link.to.button.image",
+                #     "BgMediaType": "picture",
+                #     "BgLoop": True,
+                #     "ActionType": "reply",
+                #     "ActionBody": "MASS_MESSAGES",
+                #     "ReplyType": "message",
+                #     "Text": "Много месаг"
+                # },
+                # {
+                #     "Columns": 1,
+                #     "Rows": 2,
+                #     "BgColor": "#e6f5ff",
+                #     "BgMedia": "http://link.to.button.image",
+                #     "BgMediaType": "picture",
+                #     "BgLoop": True,
+                #     "ActionType": "reply",
+                #     "ActionBody": "MASS_MESSAGES2",
+                #     "ReplyType": "message",
+                #     "Text": "XZ"
+                # },
             ],
             "InputFieldState": 'regular'
         }
@@ -249,15 +249,10 @@ def login_keyboard(viber_id=None, url='http://192.168.1.3:3000'):
 def viber_view(request):
     viber_request = viber.parse_request(request.body)
 
-    text_message = TextMessage(text="Оппа!")
-    msgs = [text_message for i in range(0, 10)]
-
     if isinstance(viber_request, ViberConversationStartedRequest):
         viber_user = viber_request.user
-
-        text_message = TextMessage(text="Приветствие! Тут текст с приветствием. Напишите чdто нибудь чтобы войти")
         viber.send_messages(viber_request.user.id, [
-            text_message, 
+            TextMessage(text="Приветствие! Тут текст с приветствием. Напишите что нибудь чтобы войти") 
         ])
     else:
         viber_user = viber_request.sender
@@ -271,23 +266,15 @@ def viber_view(request):
     if isinstance(viber_request, ViberUnsubscribedRequest):
         return HttpResponse('ok', status=200)
 
-    if viber_request.message.text == 'MASS_MESSAGES':
-        for i in range(0, 10):
-            viber.send_messages(viber_request.sender.id, [
-                text_message
-            ])
-    elif viber_request.message.text == 'MASS_MESSAGES2':
-        viber.send_messages(viber_request.sender.id, msgs)
-    else:
-        # text_message = TextMessage(text="Оппа!")
-        # viber.send_messages(viber_request.sender.id, msgs)
-        url_message = URLMessage(media="https://svoyaeda.su/api/");
-        token = create_token(customer.user)
-        viber.send_messages(viber_request.sender.id, [
-            text_message, url_message,
-            KeyboardMessage(tracking_data='TRACKING_CREATE_AD_PHONE', 
-                            keyboard=login_keyboard(token),
-                            min_api_version=6)
-        ])
+    text_message = TextMessage(text="Нажмите кнопку!")
+
+    url_message = URLMessage(media="https://svoyaeda.su/api/");
+    token = create_token(customer.user)
+    viber.send_messages(viber_request.sender.id, [
+        text_message, url_message,
+        KeyboardMessage(tracking_data='TRACKING_CREATE_AD_PHONE', 
+                        keyboard=login_keyboard(token),
+                        min_api_version=6)
+    ])
 
     return HttpResponse('ok', status=200)
