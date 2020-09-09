@@ -53,9 +53,9 @@ class JobManager(CoreModelManager):
     def create_job_and_mailing(self, **kwargs):
         job = self.create(**kwargs)
         category = kwargs.get('category')
-        
-        msg = f"Опубликована новая работа(проект): \n \
-        		{job.title} с бюджетом до {job.budget} \n \
+
+        msg = f"Опубликована новая работа(проект) : {job.title}. \
+        		Бюджет до {job.budget}. \n \
         		https://svoyaeda.su/jobs/{job.id}/"
 
         for sub in category.isubs.filter(active=True):
