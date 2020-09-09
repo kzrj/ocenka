@@ -14,8 +14,8 @@ class ISubManager(CoreModelManager):
 
 
 class ISub(CoreModel):
-    profile = models.OneToOneField('clients.Profile', on_delete=models.SET_NULL, null=True, 
-        related_name='isub')
+    profile = models.OneToOneField('clients.Profile', on_delete=models.CASCADE,
+         related_name='isub')
 
     categories = models.ManyToManyField('jobs.Category', related_name='isubs')
 

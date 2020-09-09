@@ -41,7 +41,7 @@ class ProfileManager(CoreModelManager):
 
 
 class Profile(CoreModel):
-    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=20)
     description = models.TextField(null=True, blank=True)
     phone = models.CharField(max_length=11, null=True, blank=True)
