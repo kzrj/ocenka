@@ -53,8 +53,13 @@ class JobManager(CoreModelManager):
     def create_job_and_mailing(self, **kwargs):
         job = self.create(**kwargs)
         category = kwargs.get('category')
+        
+        msg = f"Опубликована новая работа(проект): \n \
+        		{job.title} с бюджетом до {job.budget} \n \
+        		https://svoyaeda.su/jobs/{job.id}/"
+
         for sub in category.isubs.filter(active=True):
-            text_message = TextMessage(text=f"{job.title} {job.budget}")
+            text_message = TextMessage(text=msg)
             viber.send_messages(sub.profile.viber_id, [
                 text_message, 
             ])
