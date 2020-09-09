@@ -26,4 +26,4 @@ class ISub(CoreModel):
     objects = ISubManager()
 
     def __str__(self):
-        return f'Sub {self.profile.nickname}'
+        return f'Sub {self.profile}'
