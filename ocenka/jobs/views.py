@@ -40,6 +40,8 @@ from jobs.filters import JobFilter
 from jobs.pagination import JobPagination
 from clients.models import Profile
 from core.utils import create_token
+
+from core.permissions import ObjAndOwnerPermissions,
     
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -52,6 +54,7 @@ class JobViewSet(viewsets.ModelViewSet):
     serializer_class = JobSerializer
     filter_class = JobFilter
     pagination_class = JobPagination
+    permission_classes = [ObjAndOwnerPermissions]
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
