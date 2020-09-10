@@ -123,7 +123,7 @@ class JobViewSet(viewsets.ModelViewSet):
                 title=serializer.validated_data['title'],
                 category=serializer.validated_data['category'],
                 budget=serializer.validated_data['budget'],
-                address=serializer.validated_dataget('address', None),
+                address=serializer.validated_data.get('address', None),
                 zakazchik=profile,
                 description=serializer.validated_data['description'],
                 start_date=serializer.validated_data['start_date'],
