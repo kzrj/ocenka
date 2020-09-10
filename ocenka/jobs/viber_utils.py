@@ -46,7 +46,7 @@ def login_keyboard(viber_id=None, url=url):
                     "TextVAlign": "middle",
                     "ActionType": "open-url",
                     "ActionBody": f"{url}/dm/login/v/{viber_id}",
-                    "OpenURLType": "internal",
+                    "OpenURLType": "external",
                     "BgColor": "#f7bb3f",
                     "Image": "https://s18.postimg.org/9tncn0r85/sushi.png"
                 },
