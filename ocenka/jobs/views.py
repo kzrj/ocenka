@@ -41,7 +41,7 @@ from jobs.pagination import JobPagination
 from clients.models import Profile
 from core.utils import create_token
 
-from core.permissions import ObjAndOwnerPermissions,
+from core.permissions import ObjAndOwnerPermissions
     
 
 class CategoryViewSet(viewsets.ModelViewSet):
