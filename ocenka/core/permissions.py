@@ -23,7 +23,7 @@ class ObjAndOwnerPermissions(permissions.BasePermission):
             if request.user.is_staff:
                 return True
             elif hasattr(request.user, 'profile'):
-                return obj.zakazchik == request.user.profile
+                return obj.zakazchik == request.user.profile or obj == request.user
             else:
                 return False
 
@@ -31,7 +31,7 @@ class ObjAndOwnerPermissions(permissions.BasePermission):
             if request.user.is_staff:
                 return True
             elif hasattr(request.user, 'profile'):
-                return obj.zakazchik == request.user.profile
+                return obj.zakazchik == request.user.profile or obj == request.user
             else:
                 return False
 

@@ -10,10 +10,13 @@ from django.http import HttpResponse
 from clients.models import Profile
 from clients.serializers import ProfileUpdateSerializer, ProfileSerializer
 
+from core.permissions import ObjAndOwnerPermissions
+
 
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+    permission_classes = [ObjAndOwnerPermissions]
 
     def get_serializer_class(self):
         if self.action == 'partial_update':
