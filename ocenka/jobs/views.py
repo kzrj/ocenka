@@ -114,7 +114,8 @@ class JobViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             # get or create profile
             profile = request.user.profile
-            profile.nickname = serializer.validated_data['nickname']
+            profile.nickname = serializer.validated_data['nickname'] if /
+                serializer.validated_data['nickname'] else profile.nickname
             profile.phone = serializer.validated_data['phone']
             profile.mark_as_zakazchik()
 
