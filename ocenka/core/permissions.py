@@ -10,7 +10,7 @@ class ObjAndOwnerPermissions(permissions.BasePermission):
         elif request.method == 'POST':
             return True
         elif request.method == 'PATCH':
-            return request.user.is_staff
+            return True
         elif request.method == 'DELETE':
             return request.user.is_staff
         return False
